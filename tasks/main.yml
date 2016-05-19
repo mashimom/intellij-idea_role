@@ -1,0 +1,17 @@
+---
+# tasks file for intellij-idea
+- apt: name=tar update_cache=yes cache_valid_time=300
+  become: yes
+
+- stat: path={{ ansible_env.HOME }}/etc/idea
+  register: idea_dir
+
+- file: path={{ ansible_env.HOME }}/etc/idea state=directory
+  when: not idea_dir.stat.exists
+
+- unarchive: src={{ INTELLIJ_BUNDLE }} dest={{ ansible_env.HOME }}/etc/idea/ copy=yes
+  when: not idea_dir.stat.exists
+
+- file: path={{ ansible_env.HOME }}/.local/share/applications state=directory
+
+- template: src=intellijIdea.desktop.j2 dest={{ ansible_env.HOME }}/.local/share/applications/intellijIdea.desktop
