@@ -1,1 +1,3 @@
-http://download.jetbrains.com/idea/ideaIU-2016.1.2b.tar.gz
+# wget http://download.jetbrains.com/idea/ideaIU-2016.1.2b.tar.gz
+# then unpack the file and save the "contents" of new directory into idea.tar.gz
+# this is because idea comes already inside a directory, prevents moving after unpack
